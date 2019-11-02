@@ -13,13 +13,12 @@
 
 int64_t solution(int64_t limit) {
 	int64_t factor = 2;
-	int64_t largestPrimeFactor = 2;
+	int64_t largestPrimeFactor = 0;
 
 	std::vector<int64_t> primes;
-	primes.push_back(largestPrimeFactor);
+	primes.push_back(factor);
 
-	// I'm not sure this loop condition is correct, but it solves the problem...
-	while (limit > 1) {
+	while (limit >= factor) {
 		if (limit % factor == 0) {
 			limit /= factor;
 
