@@ -88,7 +88,7 @@ constexpr int64_t multiplySequence(const int32_t* const source, const size_t seq
 }
 
 constexpr int64_t solution(const size_t numberOfAdjacentDigits) {
-	if (numberOfAdjacentDigits <= 0) {
+	if (numberOfAdjacentDigits == 0) {
 		return 0;
 	}
 
