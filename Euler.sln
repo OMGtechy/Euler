@@ -16,10 +16,20 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem6", "Problem6\Problem6.vcxproj", "{E60E1EF6-DACD-4BBB-AA1D-2A540743EB9C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem7", "Problem7\Problem7.vcxproj", "{78878178-87A2-41D7-AD41-D90B7EF28528}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5371432C-F4A4-461F-BE1D-8F4078689338} = {5371432C-F4A4-461F-BE1D-8F4078689338}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem8", "Problem8\Problem8.vcxproj", "{E2B8B3C8-E994-4900-ACE9-F64313A4F2D3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem9", "Problem9\Problem9.vcxproj", "{F0EA6A5A-591E-4295-B076-50D7BCD563F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem10", "Problem10\Problem10.vcxproj", "{C96265F6-65C2-4BA5-947F-DF7F51143362}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5371432C-F4A4-461F-BE1D-8F4078689338} = {5371432C-F4A4-461F-BE1D-8F4078689338}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Eulib", "Eulib\Eulib.vcxproj", "{5371432C-F4A4-461F-BE1D-8F4078689338}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +73,14 @@ Global
 		{F0EA6A5A-591E-4295-B076-50D7BCD563F6}.Debug|x64.Build.0 = Debug|x64
 		{F0EA6A5A-591E-4295-B076-50D7BCD563F6}.Release|x64.ActiveCfg = Release|x64
 		{F0EA6A5A-591E-4295-B076-50D7BCD563F6}.Release|x64.Build.0 = Release|x64
+		{C96265F6-65C2-4BA5-947F-DF7F51143362}.Debug|x64.ActiveCfg = Debug|x64
+		{C96265F6-65C2-4BA5-947F-DF7F51143362}.Debug|x64.Build.0 = Debug|x64
+		{C96265F6-65C2-4BA5-947F-DF7F51143362}.Release|x64.ActiveCfg = Release|x64
+		{C96265F6-65C2-4BA5-947F-DF7F51143362}.Release|x64.Build.0 = Release|x64
+		{5371432C-F4A4-461F-BE1D-8F4078689338}.Debug|x64.ActiveCfg = Debug|x64
+		{5371432C-F4A4-461F-BE1D-8F4078689338}.Debug|x64.Build.0 = Debug|x64
+		{5371432C-F4A4-461F-BE1D-8F4078689338}.Release|x64.ActiveCfg = Release|x64
+		{5371432C-F4A4-461F-BE1D-8F4078689338}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
