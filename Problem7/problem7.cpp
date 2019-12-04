@@ -13,7 +13,7 @@
 #include "eulib_primes.h"
 
 int64_t solution(const size_t limit) {
-	return eulib::getPrimes([limit](const auto& primes) {return primes.size() >= limit; }).at(limit - 1);
+	return eulib::getPrimes([limit](const auto& primes) { return primes.size() >= limit; }).at(limit - 1);
 }
 
 int main() {
