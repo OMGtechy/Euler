@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem10", "Problem10\Prob
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Eulib", "Eulib\Eulib.vcxproj", "{5371432C-F4A4-461F-BE1D-8F4078689338}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem11", "Problem11\Problem11.vcxproj", "{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,10 @@ Global
 		{5371432C-F4A4-461F-BE1D-8F4078689338}.Debug|x64.Build.0 = Debug|x64
 		{5371432C-F4A4-461F-BE1D-8F4078689338}.Release|x64.ActiveCfg = Release|x64
 		{5371432C-F4A4-461F-BE1D-8F4078689338}.Release|x64.Build.0 = Release|x64
+		{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}.Debug|x64.ActiveCfg = Debug|x64
+		{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}.Debug|x64.Build.0 = Debug|x64
+		{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}.Release|x64.ActiveCfg = Release|x64
+		{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
