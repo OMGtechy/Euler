@@ -11,40 +11,14 @@
 #include <vector>
 #include <iostream>
 
+#include "eulib_primes.h"
+
 int64_t solution(int64_t limit) {
-	int64_t factor = 2;
-	int64_t largestPrimeFactor = 0;
+	const auto primeFactors = eulib::getPrimeFactors(limit);
+	const auto lastIter = primeFactors.crbegin();
 
-	std::vector<int64_t> primes;
-	primes.push_back(factor);
-
-	while (limit >= factor) {
-		if (limit % factor == 0) {
-			limit /= factor;
-
-			assert(factor > largestPrimeFactor);
-			largestPrimeFactor = factor;
-		}
-
-		// find the next prime
-		bool primeFound = false;
-		int64_t candidate = factor;
-		while (!primeFound) {
-			candidate += 1;
-			primeFound = true;
-			for (auto prime : primes) {
-				if (candidate % prime == 0) {
-					primeFound = false;
-					break;
-				}
-			}
-		}
-
-		primes.push_back(candidate);
-		factor = candidate;
-	}
-
-	return largestPrimeFactor;
+	// return 0 if there aren't any
+	return lastIter == primeFactors.crend() ? 0 : lastIter->first;
 }
 
 int main() {

@@ -8,6 +8,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem2", "Problem2\Problem2.vcxproj", "{4C2AE067-058E-46A6-9F7D-8D272A94F81D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem3", "Problem3\Problem3.vcxproj", "{82C6A970-00E7-4EA7-82A9-75DF997E6FFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5371432C-F4A4-461F-BE1D-8F4078689338} = {5371432C-F4A4-461F-BE1D-8F4078689338}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem4", "Problem4\Problem4.vcxproj", "{D35D7D59-22B9-481A-A6C2-C10B15CDA616}"
 EndProject
@@ -32,6 +35,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Eulib", "Eulib\Eulib.vcxproj", "{5371432C-F4A4-461F-BE1D-8F4078689338}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem11", "Problem11\Problem11.vcxproj", "{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Problem12", "Problem12\Problem12.vcxproj", "{A2B27588-25D6-43BE-A332-8D1E90F72BAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +92,10 @@ Global
 		{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}.Debug|x64.Build.0 = Debug|x64
 		{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}.Release|x64.ActiveCfg = Release|x64
 		{6DCB33DD-7167-409F-A73C-EA4BEE382BFC}.Release|x64.Build.0 = Release|x64
+		{A2B27588-25D6-43BE-A332-8D1E90F72BAF}.Debug|x64.ActiveCfg = Debug|x64
+		{A2B27588-25D6-43BE-A332-8D1E90F72BAF}.Debug|x64.Build.0 = Debug|x64
+		{A2B27588-25D6-43BE-A332-8D1E90F72BAF}.Release|x64.ActiveCfg = Release|x64
+		{A2B27588-25D6-43BE-A332-8D1E90F72BAF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

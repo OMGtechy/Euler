@@ -13,8 +13,13 @@
 #include "eulib_primes.h"
 
 int64_t solution(int64_t limit) {
-	const auto primes = eulib::getPrimes([limit](const auto& primes) { return primes.back() >= limit; });
-	return std::accumulate(primes.cbegin(), primes.cend() - 1 /* the last will be over the limit, hence - 1*/, int64_t(0));
+	const auto primes = eulib::getPrimes<int64_t>([limit](const auto& primes) { return *primes.crbegin() >= limit; });
+	int64_t sum = 0;
+	for (auto prime : primes) {
+		sum += prime;
+	}
+
+	return sum;
 }
 
 int main() {
