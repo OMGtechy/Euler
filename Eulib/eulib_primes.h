@@ -21,8 +21,8 @@ namespace eulib {
 		std::vector<int8_t> candidates(sieveSize, false);
 
 		// for each number up to and including square root of limit
-		size_t n = 2;
-		for (; n < static_cast<size_t>(std::ceil(std::sqrt(sieveSize)) + 1); ++n) {
+		IntegerType n = 2;
+		for (; n < static_cast<IntegerType>(std::ceil(std::sqrt(sieveSize)) + 1); ++n) {
 			// true is used to mean "is not prime"
 			if (candidates[n]) {
 				continue;
