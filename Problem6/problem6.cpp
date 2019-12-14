@@ -15,6 +15,7 @@
 #include <iostream>
 #include <cstdint>
 #include <cassert>
+#include <cmath>
 
 int32_t sumOfSquares(const int32_t limit) {
 	int32_t sum = 0;

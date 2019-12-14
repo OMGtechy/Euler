@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstdint>
 #include <algorithm>
+#include <cmath>
 
 int32_t solution(const int32_t targetNumber) {
 

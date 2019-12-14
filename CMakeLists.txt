@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.13)
+project(Euler)
+
+add_subdirectory(Eulib)
+
+include_directories(Eulib)
+add_subdirectory(Problem1)
+add_subdirectory(Problem2)
+add_subdirectory(Problem3)
+add_subdirectory(Problem4)
+add_subdirectory(Problem5)
+add_subdirectory(Problem6)
+add_subdirectory(Problem7)
+add_subdirectory(Problem8)
+add_subdirectory(Problem9)
+add_subdirectory(Problem10)
+add_subdirectory(Problem11)
+add_subdirectory(Problem12)
+

@@ -3,6 +3,8 @@
 #include <set>
 #include <functional>
 #include <map>
+#include <vector>
+#include <cmath>
 
 namespace eulib {
 	template <typename IntegerType>
