@@ -13,15 +13,15 @@
 #include "eulib_primes.h"
 
 int64_t solution(int64_t limit) {
-	const auto primes = eulib::getPrimes<int64_t>([limit](const auto& primes) { return primes.empty() ? false : *primes.crbegin() >= limit; });
-	int64_t sum = 0;
-	for (auto prime : primes) {
-                if (prime < limit) {
-		    sum += prime;
-                }
-	}
+    const auto primes = eulib::getPrimesUpTo(limit);
+    int64_t sum = 0;
+    for (auto prime : primes) {
+        if (prime < limit) {
+            sum += prime;
+        }
+    }
 
-	return sum;
+    return sum;
 }
 
 int main() {

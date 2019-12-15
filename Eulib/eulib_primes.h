@@ -6,103 +6,129 @@
 #include <vector>
 #include <cmath>
 
+// implementation detail, don't use this outside of eulib
+// requires a integer called candidate (next to be checked) and a set of primes called primes
+#define EULIB_PRIME_MACRO(CONDITION) \
+do { \
+    candidate += 2; \
+    bool isPrime = true; \
+    for (auto prime : primes) { \
+        if (candidate % prime == 0) { \
+            isPrime = false; \
+            break; \
+        } \
+    } \
+\
+    if (isPrime) { \
+        primes.insert(candidate); \
+    } \
+} while(CONDITION)
+
 namespace eulib {
-	template <typename IntegerType>
-	std::set<IntegerType> getPrimes(std::function<bool(const std::set<IntegerType>&)> stopCondition, std::set<IntegerType> knownPrimes = {}) {
-		if (stopCondition(knownPrimes)) {
-			return knownPrimes;
-		}
+        template<typename IntegerType> using PrimeCollection = std::set<IntegerType>;
 
-		std::set<IntegerType> primes = std::move(knownPrimes);
+        size_t estimateLimitNeededForNPrimes(const size_t n) {
+            return static_cast<size_t>(std::ceil(std::log(n) * n));
+        }
 
-		// sieve of eratosthenes
-		// create candidates up to limit, limit chose because it does about this many almost instantly
-		constexpr size_t sieveSize = 2 << 14;
+        template <typename IntegerType>
+        PrimeCollection<IntegerType> sieveOfEratosthenes(const size_t lastNumberToCheck, PrimeCollection<IntegerType> primes = {}) {
+            const auto sieveSize = lastNumberToCheck;
+            const auto limit = static_cast<IntegerType>(std::ceil(std::sqrt(sieveSize))) + 1;
 
-		// don't use bool here because std::vector<bool> is just ... weird
-		std::vector<int8_t> candidates(sieveSize, false);
+            // don't use bool here because std::vector<bool> is just ... weird
+            std::vector<int8_t> candidates(sieveSize + 1, false);
 
-		// for each number up to and including square root of limit
-		IntegerType n = 2;
-		for (; n < static_cast<IntegerType>(std::ceil(std::sqrt(sieveSize)) + 1); ++n) {
-			// true is used to mean "is not prime"
-			if (candidates[n]) {
-				continue;
-			}
+            // for each number up to and including square root of limit
+            IntegerType n = 2;
+            for (; n < limit; ++n) {
+                // true is used to mean "is not prime"
+                if (candidates[n]) {
+                    continue;
+                }
 
-			// eliminate numbers that are multiples
-			for (size_t multiple = n + n; multiple < sieveSize; multiple += n) {
-				candidates[multiple] = true;
-			}
+                // eliminate numbers that are multiples
+                for (size_t multiple = n + n; multiple < sieveSize; multiple += n) {
+                    candidates[multiple] = true;
+                }
 
-			primes.insert(n);
-			if (stopCondition(primes)) {
-				return primes;
-			}
-		}
+                primes.insert(n);
+            }
 
-		// others are primes
-		for (; n < sieveSize; ++n) {
-			if (!candidates[n]) {
-				primes.insert(n);
-				if (stopCondition(primes)) {
-					return primes;
-				}
-			}
-		}
+            // others are primes
+            for (; n < sieveSize; ++n) {
+                if (!candidates[n]) {
+                    primes.insert(n);
+                }
+            }
 
-		IntegerType candidate = 1;
-		while (!stopCondition(primes)) {
-			// fallback in case the sieve hasn't covered
-			candidate += 2;
-			bool isPrime = true;
-			for (auto prime : primes) {
-				if (candidate % prime == 0) {
-					isPrime = false;
-					break;
-				}
-			}
+            return primes;
+        }
 
-			if (isPrime) {
-				primes.insert(candidate);
-			}
-		}
+        template <typename IntegerType>
+        PrimeCollection<IntegerType> getNPrimes(const size_t n, PrimeCollection<IntegerType> knownPrimes = {}) {
+            if (knownPrimes.size() >= n) {
+                return knownPrimes;
+            }
 
-		return primes;
+            auto primes = sieveOfEratosthenes<IntegerType>(estimateLimitNeededForNPrimes(n * 2), knownPrimes);
+
+            // there will be more than 0 primes by this point, otherwise .size() >= n would have triggered earlier
+            IntegerType candidate = *primes.crbegin();
+
+            // fallback in case the sieve hasn't covered
+            EULIB_PRIME_MACRO(primes.size() < n);
+
+            return primes;
 	}
 
+        template <typename IntegerType>
+        PrimeCollection<IntegerType> getPrimesUpTo(const IntegerType limit, PrimeCollection<IntegerType> knownPrimes = {}) {
+            if ((!knownPrimes.empty()) && (*knownPrimes.crbegin() >= limit)) {
+                return knownPrimes;
+            }
+
+            auto primes = sieveOfEratosthenes(limit, knownPrimes);
+            auto candidate = primes.size() < 2 ? IntegerType(1) : *primes.crbegin();
+
+            // fallback in case the sieve hasn't covered
+            EULIB_PRIME_MACRO(*primes.crbegin() < limit);
+
+            return primes;
+        }
+
 	template <typename IntegerType>
-	std::map<IntegerType, IntegerType> getPrimeFactors(IntegerType n, const std::set<IntegerType>& knownPrimes = {}) {
-		std::map<IntegerType, IntegerType> primeFactors;
+	std::map<IntegerType, IntegerType> getPrimeFactors(IntegerType n) {
+            std::map<IntegerType, IntegerType> primeFactors;
 
-		std::set<IntegerType> primes = knownPrimes;
-		const auto getMorePrimes = [&primes]() { return getPrimes<IntegerType>([newPrimesRequested = primes.size() + static_cast<size_t>(100)](const auto& newPrimes) { return newPrimes.size() >= newPrimesRequested; }, primes); };
+            const auto maxDivisorToCheck = n;
+            PrimeCollection<IntegerType> primes;
+            auto primeIter = primes.cbegin();
 
-		typename decltype(primes)::iterator nextPrimeIter = primes.cbegin();
-		IntegerType factor = 0;
+            while (true) {
+                const auto distance = static_cast<size_t>(std::distance(primes.cbegin(), primeIter));
+                primes = getNPrimes(primes.size() + 100, primes);
+                primeIter = primes.cbegin();
+                for (size_t i = 0; i < distance; ++i, ++primeIter);
 
-		while (true) {
-			for (; nextPrimeIter != primes.cend(); ++nextPrimeIter) {
-				factor = *nextPrimeIter;
-				while (n % factor == 0) {
-					n /= factor;
-					primeFactors[factor] += 1;
-				}
-			}
+                IntegerType prime;
+                for (; primeIter != primes.cend() && n >= *primeIter; ++primeIter) {
+                    prime = *primeIter;
+                    if (prime > maxDivisorToCheck) {
+                        break;
+                    }
 
-			if (n < factor) {
-				break;
-			}
+                    while (n % prime == 0) {
+                        n /= prime;
+                        primeFactors[prime] += 1;
+                    }
+                }
 
-			const auto distance = static_cast<size_t>(std::distance(primes.cbegin(), nextPrimeIter));
+                if (prime > n) {
+                    break;
+                } 
+            }
 
-			// the number primes aquired each time is arbitrary but seems to work well enough
-			primes = getMorePrimes();
-
-			nextPrimeIter = primes.begin();
-			for (size_t i = 0; i < distance; ++i, ++nextPrimeIter);
-		}
-
-		return primeFactors;
+            return primeFactors;
 	}
 }

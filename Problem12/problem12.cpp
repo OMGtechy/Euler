@@ -129,29 +129,27 @@ IntegerType getTriangleNumber(const IntegerType n) {
 	return static_cast<IntegerType>(std::pow(n, 2) / 2.0 + (static_cast<double>(n) / 2.0));
 }
 
-IntegerType getNumberOfFactors(const IntegerType n, const std::set<IntegerType>& primes = {}) {
+IntegerType getNumberOfFactors(const IntegerType n) {
 	if (n == 0) {
-		return 0;
+	    return 0;
 	}
 
-	const auto primeFactors = eulib::getPrimeFactors<IntegerType>(n, primes);
-	
+	const auto primeFactors = eulib::getPrimeFactors<IntegerType>(n);
+
 	IntegerType factors = 1;
 	for (auto prime : primeFactors) {
-		factors *= prime.second + 1;
+	    factors *= prime.second + 1;
 	}
 
 	return factors;
 }
 
 IntegerType solution(const IntegerType numberOfDivisorsRequired) {
-	const auto primes = eulib::getPrimes<IntegerType>([](auto primes) { return primes.size() < 100000; });
-
 	for (IntegerType n = 0;; ++n) {
-		const auto triangleNumber = getTriangleNumber(n);
-		if (getNumberOfFactors(triangleNumber, primes) >= numberOfDivisorsRequired) {
-			return triangleNumber;
-		}
+            const auto triangleNumber = getTriangleNumber(n);
+            if (getNumberOfFactors(triangleNumber) >= numberOfDivisorsRequired) {
+                return triangleNumber;
+            }
 	}
 }
 
