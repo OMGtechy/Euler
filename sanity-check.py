@@ -2,7 +2,7 @@ import subprocess
 
 def check_case(problemNumber, expectedLastLine):
     output = subprocess.check_output(f"build/Problem{problemNumber}/Problem{problemNumber}")
-    lastLine = str(output, 'utf-8')
+    lastLine = str(output, 'utf-8').splitlines()[-1]
     lastLine = lastLine.strip()
     # str to force it to a string, strip in case it already was
     expectedLastLine = str(expectedLastLine).strip()
