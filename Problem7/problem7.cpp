@@ -14,8 +14,9 @@
 
 int64_t solution(const size_t limit) {
     const auto primes = eulib::getNPrimes<int64_t>(limit);
-    assert(primes.size() > 0);
-    return *primes.crbegin();
+    auto primeIter = primes.cbegin();
+    for(size_t i = 1; i < limit; ++primeIter, ++i);
+    return *primeIter;
 }
 
 int main() {
