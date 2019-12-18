@@ -1,0 +1,3 @@
+[submodule "libbitter"]
+	path = libbitter
+	url = https://github.com/OMGtechy/libbitter

@@ -4,6 +4,8 @@ project(Euler)
 add_subdirectory(Eulib)
 
 include_directories(Eulib)
+include_directories(libbitter/include)
+
 add_subdirectory(Problem1)
 add_subdirectory(Problem2)
 add_subdirectory(Problem3)
@@ -18,3 +20,4 @@ add_subdirectory(Problem11)
 add_subdirectory(Problem12)
 add_subdirectory(Problem13)
 add_subdirectory(Problem14)
+add_subdirectory(Problem15)
