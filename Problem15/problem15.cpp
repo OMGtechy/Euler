@@ -36,7 +36,7 @@ bitter::VariableUnsignedInteger nChooseK(int32_t n, int32_t k) {
     // whole problem iteratively, but this seemed like a nice oppurtunity to try
     // out my own BigInt implementation that's been sat on GitHub for a while.
     // Of course, outside of these toy projects ... writing your own BigInt
-    // it's a great idea most of the time.
+    // it's not a great idea most of the time.
 
     // n!
     bitter::VariableUnsignedInteger numerator{256 / 8};
