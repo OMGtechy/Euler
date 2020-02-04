@@ -48,7 +48,7 @@ namespace eulib {
                 }
 
                 // eliminate numbers that are multiples
-                for (size_t multiple = n + n; multiple < sieveSize; multiple += n) {
+                for (size_t multiple = static_cast<size_t>(n) + static_cast<size_t>(n); multiple < sieveSize; multiple += n) {
                     candidates[multiple] = true;
                 }
 
@@ -99,6 +99,10 @@ namespace eulib {
 
 	template <typename IntegerType>
 	std::map<IntegerType, IntegerType> getPrimeFactors(IntegerType n) {
+            if (n < 2) {
+                return {};
+            }
+
             std::map<IntegerType, IntegerType> primeFactors;
 
             const auto maxDivisorToCheck = n;
