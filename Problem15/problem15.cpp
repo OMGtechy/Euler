@@ -60,7 +60,7 @@ bitter::VariableUnsignedInteger nChooseK(int32_t n, int32_t k) {
     return numerator / denominator;
 }
 
-bitter::VariableUnsignedInteger solution(uint64_t n) {
+bitter::VariableUnsignedInteger solution(uint32_t n) {
     // when calculating the first few values of the sequence by hand,
     // it turned out to be something called a "binomial[2n/n]" sequence.
     // This function computes that for some value of n.
